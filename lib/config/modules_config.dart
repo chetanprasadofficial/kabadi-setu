@@ -8,44 +8,41 @@ import '../screens/sync_pay_screen.dart';
 
 final List<AppModule> appModules = [
   AppModule(
-    title: 'Capture',
+    titleKey: 'capture',
     icon: Icons.camera_alt,
     screenBuilder: (context) => const CaptureScreen(),
   ),
   AppModule(
-    title: 'Value',
+    titleKey: 'value',
     icon: Icons.attach_money,
     screenBuilder: (context) => const ValueScreen(),
   ),
   AppModule(
-    title: 'Connect',
+    titleKey: 'connect',
     icon: Icons.people,
     screenBuilder: (context) => const ConnectScreen(),
   ),
   AppModule(
-    title: 'Handover',
+    titleKey: 'handover',
     icon: Icons.handshake,
     screenBuilder: (context) => const HandoverScreen(),
   ),
   AppModule(
-    title: 'Sync & Pay',
+    titleKey: 'syncPay',
     icon: Icons.sync,
     screenBuilder: (context) => const SyncPayScreen(),
   ),
 ];
 
-// Collector handles the full pipeline: captures scrap from households,
-// values it, connects with recyclers, hands over, and syncs payment.
 final List<AppModule> collectorModules = [
-  appModules[0], // Capture
-  appModules[1], // Value
-  appModules[2], // Connect
-  appModules[3], // Handover
-  appModules[4], // Sync & Pay
+  appModules[0],
+  appModules[1],
+  appModules[2],
+  appModules[3],
+  appModules[4],
 ];
 
-// Recycler is on the receiving end — confirms handover and payment sync.
 final List<AppModule> recyclerModules = [
-  appModules[3], // Handover
-  appModules[4], // Sync & Pay
+  appModules[3],
+  appModules[4],
 ];

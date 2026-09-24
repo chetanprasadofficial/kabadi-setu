@@ -12,6 +12,23 @@ class HomeScreen extends StatelessWidget {
     required this.modules,
   });
 
+  String _localizedTitle(AppLocalizations t, String key) {
+    switch (key) {
+      case 'capture':
+        return t.capture;
+      case 'value':
+        return t.value;
+      case 'connect':
+        return t.connect;
+      case 'handover':
+        return t.handover;
+      case 'syncPay':
+        return t.syncPay;
+      default:
+        return key;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final t = AppLocalizations.of(context)!;
@@ -101,7 +118,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 12),
                         Text(
-                          module.title,
+                          _localizedTitle(t, module.titleKey),
                           style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                         ),
                       ],
