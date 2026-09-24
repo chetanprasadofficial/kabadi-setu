@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "appTitle": "Kabadi Setu",
+  "whoAreYou": "Who are you?",
+  "chooseRole": "Choose your role to continue",
+  "imCollector": "I'm a Collector",
+  "collectorSubtitle": "I want to collect and connect",
+  "imRecycler": "I'm a Recycler",
+  "recyclerSubtitle": "I want to receive verified scrap",
+  "loggedInAs": "Logged in as {role}",
+  "whatToDo": "What do you want to do?",
+  "capture": "Capture",
+  "value": "Value",
+  "connect": "Connect",
+  "handover": "Handover",
+  "syncPay": "Sync & Pay",
+  "scrapCollected": "Scrap Collected",
+  "earnings": "Earnings",
+  "getStarted": "Get Started",
+  "tagline": "Bridging the informal collector into the formal recycling chain",
+  "comingSoon": "Coming soon"
+}

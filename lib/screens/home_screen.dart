@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/app_module.dart';
+import '../l10n/app_localizations.dart';
 
 class HomeScreen extends StatelessWidget {
   final String roleName;
@@ -13,13 +14,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF3F5F0),
       appBar: AppBar(
-        title: Text(
-          'Kabadi Setu',
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        ),
+        title: Text(t.appTitle, style: const TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.green.shade700,
         foregroundColor: Colors.white,
         elevation: 0,
@@ -38,14 +38,14 @@ class HomeScreen extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: const [
-                  _StatItem(label: 'Scrap Collected', value: '12 kg'),
-                  SizedBox(
+                children: [
+                  _StatItem(label: t.scrapCollected, value: '12 kg'),
+                  const SizedBox(
                     width: 1,
                     height: 40,
                     child: ColoredBox(color: Colors.white24),
                   ),
-                  _StatItem(label: 'Earnings', value: '₹340'),
+                  _StatItem(label: t.earnings, value: '₹340'),
                 ],
               ),
             ),
@@ -53,14 +53,14 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(
-                'Logged in as $roleName',
+                t.loggedInAs(roleName),
                 style: TextStyle(fontSize: 13, color: Colors.grey.shade600),
               ),
             ),
             const SizedBox(height: 16),
-            const Text(
-              'What do you want to do?',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            Text(
+              t.whatToDo,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 16),
             GridView.builder(
@@ -97,19 +97,12 @@ class HomeScreen extends StatelessWidget {
                             color: Colors.green.shade50,
                             shape: BoxShape.circle,
                           ),
-                          child: Icon(
-                            module.icon,
-                            size: 30,
-                            color: Colors.green.shade700,
-                          ),
+                          child: Icon(module.icon, size: 30, color: Colors.green.shade700),
                         ),
                         const SizedBox(height: 12),
                         Text(
                           module.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 16,
-                          ),
+                          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                         ),
                       ],
                     ),
@@ -134,19 +127,9 @@ class _StatItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          value,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 22,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        Text(value, style: const TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold)),
         const SizedBox(height: 4),
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white70, fontSize: 13),
-        ),
+        Text(label, style: const TextStyle(color: Colors.white70, fontSize: 13)),
       ],
     );
   }

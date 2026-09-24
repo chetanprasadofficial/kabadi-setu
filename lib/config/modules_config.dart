@@ -34,18 +34,17 @@ final List<AppModule> appModules = [
   ),
 ];
 
-final List<AppModule> householdModules = [
+// Collector handles the full pipeline: captures scrap from households,
+// values it, connects with recyclers, hands over, and syncs payment.
+final List<AppModule> collectorModules = [
   appModules[0], // Capture
   appModules[1], // Value
-  appModules[2], // Connect
-];
-
-final List<AppModule> collectorModules = [
   appModules[2], // Connect
   appModules[3], // Handover
   appModules[4], // Sync & Pay
 ];
 
+// Recycler is on the receiving end — confirms handover and payment sync.
 final List<AppModule> recyclerModules = [
   appModules[3], // Handover
   appModules[4], // Sync & Pay

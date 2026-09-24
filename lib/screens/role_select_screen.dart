@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'home_screen.dart';
 import '../config/modules_config.dart';
 import '../models/app_module.dart';
+import '../l10n/app_localizations.dart';
+import '../main.dart';
 
 class RoleSelectScreen extends StatelessWidget {
   const RoleSelectScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final t = AppLocalizations.of(context)!;
+
     return Scaffold(
       backgroundColor: const Color(0xFFF3F5F0),
       body: SafeArea(
@@ -16,36 +20,35 @@ class RoleSelectScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 20),
-              const Text(
-                'Who are you?',
-                style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+              Align(
+                alignment: Alignment.topRight,
+                child: _LanguageSwitcher(),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                t.whoAreYou,
+                style: const TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 8),
               Text(
-                'Choose your role to continue',
+                t.chooseRole,
                 style: TextStyle(fontSize: 15, color: Colors.grey.shade600),
+                textAlign: TextAlign.center,
               ),
               const SizedBox(height: 40),
               _RoleCard(
-                icon: Icons.home,
-                title: "I'm a Household",
-                subtitle: 'I want to sell my scrap',
-                onTap: () => _goHome(context, 'Household', householdModules),
-              ),
-              const SizedBox(height: 20),
-              _RoleCard(
                 icon: Icons.local_shipping,
-                title: "I'm a Collector",
-                subtitle: 'I want to collect and connect',
-                onTap: () => _goHome(context, 'Collector', collectorModules),
+                title: t.imCollector,
+                subtitle: t.collectorSubtitle,
+                onTap: () => _goHome(context, t.imCollector, collectorModules),
               ),
               const SizedBox(height: 20),
               _RoleCard(
                 icon: Icons.factory,
-                title: "I'm a Recycler",
-                subtitle: 'I want to receive verified scrap',
-                onTap: () => _goHome(context, 'Recycler', recyclerModules),
+                title: t.imRecycler,
+                subtitle: t.recyclerSubtitle,
+                onTap: () => _goHome(context, t.imRecycler, recyclerModules),
               ),
             ],
           ),
@@ -60,6 +63,29 @@ class RoleSelectScreen extends StatelessWidget {
       MaterialPageRoute(
         builder: (_) => HomeScreen(roleName: role, modules: modules),
       ),
+    );
+  }
+}
+
+class _LanguageSwitcher extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder<Locale>(
+      valueListenable: localeNotifier,
+      builder: (context, currentLocale, _) {
+        return DropdownButton<Locale>(
+          value: currentLocale,
+          underline: const SizedBox(),
+          items: const [
+            DropdownMenuItem(value: Locale('mr'), child: Text('मराठी')),
+            DropdownMenuItem(value: Locale('hi'), child: Text('हिंदी')),
+            DropdownMenuItem(value: Locale('en'), child: Text('English')),
+          ],
+          onChanged: (locale) {
+            if (locale != null) localeNotifier.value = locale;
+          },
+        );
+      },
     );
   }
 }
@@ -106,10 +132,7 @@ class _RoleCard extends StatelessWidget {
                   children: [
                     Text(
                       title,
-                      style: const TextStyle(
-                        fontSize: 17,
-                        fontWeight: FontWeight.w600,
-                      ),
+                      style: const TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
                     ),
                     const SizedBox(height: 4),
                     Text(
